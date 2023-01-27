@@ -1,0 +1,6 @@
+flask
+flask_hcaptcha
+pymongo
+dnspython
+requests
+bcrypt
