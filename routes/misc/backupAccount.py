@@ -1,6 +1,7 @@
 from . import misc
 from utils import *
 from config import *
+from sys import getsizeof
 from flask import request
 
 
@@ -21,6 +22,9 @@ def backup_account():
         return "-1"
 
     save_data = get_arg("saveData")
+    
+    if getsizeof(save_data) > maximum_backup_size:
+        return "-1"
 
     if not check_password(account_id, password, False, ip=get_ip()):
         return "-1"
