@@ -98,7 +98,7 @@ def get_levels():
 
         if type_pack == "0":  # Поиск
             if int_arg(search) > 0:
-                query = {"level_id": int_arg(search)}
+                query = {"level_id": int_arg(search), "$or": []}
                 sort = None
             elif search != "":
                 query["level_name"] = {"$regex": f"(?i)^{search}"}
