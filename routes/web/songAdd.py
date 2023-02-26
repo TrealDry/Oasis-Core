@@ -14,7 +14,7 @@ def song_add():
             login = get_arg_form("login")
             password = get_arg_form("password")
 
-            account_info = tuple(account_db.find({"username": {"$regex": f"(?i){login}"}}))
+            account_info = tuple(account_db.find({"username": {"$regex": f"^{login}$", '$options': 'i'}}))
 
             account_id = account_info[0]["account_id"]
 

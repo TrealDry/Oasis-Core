@@ -13,7 +13,7 @@ def sync_account():
     password = get_arg("password")
 
     try:
-        account_id = user_db.find_one({"username": {"$regex": f"(?i){username}"}})["account_id"]
+        account_id = user_db.find_one({"username": {"$regex": f"^{username}$", '$options': 'i'}})["account_id"]
     except TypeError:
         return "-1"
 

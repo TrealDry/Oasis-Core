@@ -104,7 +104,7 @@ def command(account_id, level_id, comment):
 
     elif comment_arr[0] == "!setacc" and role[0]["command_setacc"] == 1:
         try:
-            user_info = tuple(db.user_db.find({"username": {"$regex": f"(?i){comment_arr[1]}"}}))
+            user_info = tuple(db.user_db.find({"username": {"$regex": f"^{comment_arr[1]}$", '$options': 'i'}}))
             query_level = {
                 "account_id": user_info[0]["account_id"],
                 "user_id": user_info[0]["user_id"],

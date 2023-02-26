@@ -11,7 +11,7 @@ def login_account():
     username = get_arg("userName")
     password = get_arg("password")
 
-    account_id = account_db.find_one({"username": {"$regex": f"(?i){username}"}})["account_id"]
+    account_id = account_db.find_one({"username": {"$regex": f"^{username}$", '$options': 'i'}})["account_id"]
     user_id = account_db.find_one({"account_id": account_id})["user_id"]
 
     # Проверка на длину строки

@@ -21,8 +21,8 @@ def register_account():
         return "-1"
 
     # Проверка, есть ли такой ник и почта
-    if account_db.count_documents({"username": {"$regex": f"(?i){username}"}}) == 1 or \
-       account_db.count_documents({"email": {"$regex": f"(?i){email}"}}) == 1:
+    if account_db.count_documents({"username": {"$regex": f"^{username}$", '$options': 'i'}}) == 1 or \
+       account_db.count_documents({"email": {"$regex": f"^{email}$", '$options': 'i'}}) == 1:
         return "-1"
 
     confirmation_code = randint(100000000000, 999999999999)
