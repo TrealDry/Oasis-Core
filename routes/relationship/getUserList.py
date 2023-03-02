@@ -58,4 +58,4 @@ def get_user_list():
         responce = responce[:-1]
         return responce
     else:
-        return "-1"
+        return "-2"
