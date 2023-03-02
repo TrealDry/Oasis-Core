@@ -27,14 +27,14 @@ def cron(key, type_key):
         if len(levels) != 0:
             for i in levels:
                 if i["account_id"] not in creator_list:
-                    creator_list["account_id"] = 0
+                    creator_list[i["account_id"]] = 0
 
                 if i["featured"] == 0 and i["epic"] == 0:
-                    creator_list["account_id"] += 1
+                    creator_list[i["account_id"]] += 1
                 elif i["featured"] == 1 and i["epic"] == 0:
-                    creator_list["account_id"] += 2
+                    creator_list[i["account_id"]] += 2
                 if i["epic"] == 1:
-                    creator_list["account_id"] += 4
+                    creator_list[i["account_id"]] += 4
 
             for i in creator_list:
                 responce += f"{i} = {creator_list[i]} cp<br>"
