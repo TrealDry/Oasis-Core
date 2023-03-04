@@ -189,7 +189,7 @@ def get_levels():
                 4: song_info[0]["artist_name"], 5: "{0:.2f}".format(song_info[0]["size"]),
                 6: "", 10: song_info[0]["link"], 7: "", 8: 1
             }
-            responce += resp_proc(single_song, 3)[:-2] + ":~"
+            responce += resp_proc(single_song, 3)[:-1] + ":~"
     else:
         if is_non_song:
             responce = responce[:-3]
