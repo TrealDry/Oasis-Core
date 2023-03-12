@@ -36,7 +36,14 @@ def suggest_stars():
     query_level = {}
 
     if role[0]["mod_button_type"] <= 1:
-        return "1"  # Заглушка
+        suggest_db.insert_one({
+            "account_id": account_id,
+            "level_id": level_id,
+            "stars": star,
+            "featured": is_featured,
+            "time": time()
+        })
+        return "1"
     elif role[0]["mod_button_type"] == 2:
         query_level["featured"] = 1 if is_featured else 0
 
