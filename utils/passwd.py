@@ -13,6 +13,9 @@ def check_password(account_id, password, gjp=True, isCheckValid=True, ip=""):
     if len(password) > 256:
         return False
 
+    if database.account_db.find_one({"account_id": account_id})["is_banned"] == 1:
+        return False
+
     if isCheckValid:
         try:
             if database.account_db.find_one({"account_id": account_id})["valid"] == 0:
