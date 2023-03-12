@@ -35,7 +35,7 @@ def suggest_stars():
     role = tuple(role_db.find({"role_id": roleassing_db.find_one({"account_id": account_id})["role_id"]}))
     query_level = {}
 
-    if role[0]["mod_button_type"] <= 1:
+    if role[0]["mod_button_type"] == 1:
         suggest_db.insert_one({
             "account_id": account_id,
             "level_id": level_id,
@@ -73,6 +73,8 @@ def suggest_stars():
             })
         else:
             abort(500)
+    else:
+        return "1"
 
     if query_level:
         level_db.update_one({"level_id": level_id}, {"$set": query_level})
