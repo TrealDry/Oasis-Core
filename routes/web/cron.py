@@ -105,6 +105,17 @@ def cron(key, type_key):
             "date": {"$lte": int(time()) - 43200}
         })
 
+        """ Если модератор лишился привилегии """
+
+        for i in user_db.find({"mod_level": {"$gt": 0}}):
+            if roleassing_db.count_documents({
+                "account_id": i["account_id"]
+            }) == 0:
+                user_db.update_one({"user_id": i["user_id"]}, {"$set": {
+                    "mod_level": 0,
+                    "color_comment": ""
+                }})
+
         return responce
 
     else:
