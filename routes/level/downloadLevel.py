@@ -80,16 +80,17 @@ def download_level():
 
         confirmed_download = False
 
-        if check_password(account_id, password, ip=get_ip()):
-            if actiondownload_db.count_documents({
-                "level_id": level_id,
-                "account_id": account_id
-            }) == 0:
-                confirmed_download = True
+        if account_id > 0:
+            if check_password(account_id, password, ip=get_ip()):
+                if actiondownload_db.count_documents({
+                    "level_id": level_id,
+                    "account_id": account_id
+                }) == 0:
+                    confirmed_download = True
         elif actiondownload_db.count_documents({
             "level_id": level_id,
             "ip": ip
-        }) == 0:
+        }) == 0 and confirmed_download is False:
             account_id = 0
             confirmed_download = True
 
