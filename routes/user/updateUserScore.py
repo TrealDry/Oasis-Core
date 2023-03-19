@@ -8,6 +8,9 @@ def update_user_score():
     account_id = int_arg(get_arg("accountID"))
     password = get_arg('gjp')
 
+    if account_id == 0:
+        return "-1"
+
     star = int_arg(get_arg('stars'))
     demon = int_arg(get_arg('demons'))
     diamond = int_arg(get_arg('diamonds'))
