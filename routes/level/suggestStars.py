@@ -42,7 +42,7 @@ def suggest_stars():
             "level_id": level_id,
             "stars": star,
             "featured": is_featured,
-            "time": time()
+            "time": int(time())
         })
         return "1"
     elif role[0]["mod_button_type"] == 2:
