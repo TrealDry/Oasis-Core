@@ -30,7 +30,7 @@ def get_user_info():
         43: tg_user[0]["icon_spider"], 48: 0, 30: 0, 16: target_acc_id
     }
 
-    if account_id != 0 or password is not None:
+    if account_id != 0:
         if check_password(account_id, password, ip=get_ip()):
             is_account_owner = True
 
