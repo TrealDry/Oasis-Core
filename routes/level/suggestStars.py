@@ -1,6 +1,7 @@
 from . import level
 from utils import *
 from config import *
+from time import time
 from flask import request, abort
 
 
@@ -33,7 +34,7 @@ def suggest_stars():
         abort(500)
 
     role = tuple(role_db.find({"role_id": roleassing_db.find_one({"account_id": account_id})["role_id"]}))
-    query_level = {}
+    query_level = {"rate_date": int(time())}
 
     if role[0]["mod_button_type"] == 1:
         suggest_db.insert_one({
