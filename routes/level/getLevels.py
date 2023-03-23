@@ -11,7 +11,7 @@ def get_levels():
     if not secret_check(request.values.get("secret"), 2):
         return "-1"
 
-    account_id = int_arg(get_arg('account_id'))
+    account_id = int_arg(get_arg('accountID'))
     password = get_arg('gjp')
 
     gauntlet = int_arg(get_arg('gauntlet'))
@@ -25,7 +25,7 @@ def get_levels():
     completed_levels = get_arg('completedLevels')
 
     gauntlet_bool = "" if gauntlet == 0 else "1"
-    follow = get_arg('Follow')
+    followed = get_arg('Follow')
     search = get_arg("str")
 
     query = {
@@ -110,6 +110,9 @@ def get_levels():
         elif type_pack == "4":  # Новые уровни
             sort = [("level_id", pymongo.DESCENDING)]
         elif type_pack == "5":  # Уровни игрока
+            if int_arg(search) == account_id:
+                if check_password(account_id, password, ip=get_ip()):
+                    query.pop("unlisted")
             sort = [("level_id", pymongo.DESCENDING)]
             query["user_id"] = int_arg(search)
         elif type_pack == "6":  # Вкладка Featured
@@ -126,6 +129,10 @@ def get_levels():
         elif type_pack == "11":  # Вкладка Awarded (недавно оценённые)
             sort = [("rate_date", pymongo.DESCENDING)]
             query["star"] = {"$gt": 0}
+        elif type_pack == "12":  # Вкладка Followed
+            sort = [("level_id", pymongo.DESCENDING)]
+            for i in followed.split(","):
+                query["$or"].append({"account_id": int_arg(i)})
         elif type_pack == "16":  # Вкладка Hall of fame
             sort = [("rate_date", pymongo.DESCENDING)]
             query["epic"] = 1
