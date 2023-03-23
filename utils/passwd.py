@@ -10,6 +10,9 @@ def hash_password(x): return bcrypt.hashpw(x.encode(), bcrypt.gensalt()).decode(
 
 
 def check_password(account_id, password, gjp=True, isCheckValid=True, ip=""):
+    if account_id == 0:
+        return False
+
     if len(password) > 256:
         return False
 
