@@ -22,12 +22,12 @@ def get_user_info():
 
     response = {
         1: tg_user[0]["username"], 2: tg_user[0]["user_id"], 13: tg_user[0]["secret_coin"], 17: tg_user[0]["user_coin"],
-        10: tg_user[0]["first_color"], 11: tg_user[0]["second_color"], 3: tg_user[0]["star"], 46: tg_user[0]["demon"],
-        8: tg_user[0]["creator_point"], 18: tg_user[0]["message_state"], 19: tg_user[0]["friends_state"],
-        50: tg_user[0]["comment_history_state"], 20: tg_user[0]["youtube"], 21: tg_user[0]["icon_cube"],
-        22: tg_user[0]["icon_ship"], 23: tg_user[0]["icon_ball"], 24: tg_user[0]["icon_ufo"],
-        25: tg_user[0]["icon_wave"], 26: tg_user[0]["icon_robot"], 28: tg_user[0]["icon_glow"],
-        43: tg_user[0]["icon_spider"], 48: 0, 30: 0, 16: target_acc_id
+        10: tg_user[0]["first_color"], 11: tg_user[0]["second_color"], 3: tg_user[0]["star"], 46: tg_user[0]["diamond"],
+        4: tg_user[0]["demon"], 8: tg_user[0]["creator_point"], 18: tg_user[0]["message_state"],
+        19: tg_user[0]["friends_state"], 50: tg_user[0]["comment_history_state"], 20: tg_user[0]["youtube"],
+        21: tg_user[0]["icon_cube"], 22: tg_user[0]["icon_ship"], 23: tg_user[0]["icon_ball"],
+        24: tg_user[0]["icon_ufo"], 25: tg_user[0]["icon_wave"], 26: tg_user[0]["icon_robot"],
+        28: tg_user[0]["icon_glow"], 43: tg_user[0]["icon_spider"], 48: 0, 30: 0, 16: target_acc_id
     }
 
     if account_id != 0:
