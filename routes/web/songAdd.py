@@ -49,7 +49,7 @@ def song_add():
                     else:
                         song_db.insert_one({
                             "song_id": song_id,
-                            "name": filename.partition('.mp3')[0],
+                            "name": char_clear(filename.partition('.mp3')[0]),
                             "artist_name": "PleasantSpace",
                             "account_id": account_id,
                             "size": song_info.st_size / (1024 * 1024),
