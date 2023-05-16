@@ -16,7 +16,7 @@ def register_account():
     email = get_arg("email")
 
     # Проверка на длину строки
-    if len(username) > 15 and len(password) > 20 and \
+    if len(username) > 15 or len(password) > 20 or \
        len(email) > 32:
         return "-1"
 
