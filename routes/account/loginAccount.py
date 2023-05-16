@@ -15,7 +15,7 @@ def login_account():
     user_id = account_db.find_one({"account_id": account_id})["user_id"]
 
     # Проверка на длину строки
-    if len(username) > 15 and len(password) > 20:
+    if len(username) > 15 or len(password) > 20:
         return "-1"
 
     if check_password(account_id, password, False, ip=get_ip()):
