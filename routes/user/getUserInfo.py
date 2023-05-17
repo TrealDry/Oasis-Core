@@ -51,10 +51,10 @@ def get_user_info():
         else:
             response.update({31: 0})
 
-        response.update({44: tg_user[0]["twitter"], 45: tg_user[0]["twitch"], 49: tg_user[0]["mod_level"]})
+    response.update({44: tg_user[0]["twitter"], 45: tg_user[0]["twitch"], 49: tg_user[0]["mod_level"]})
 
-        if account_id == target_acc_id:
-            response.update({38: tg_user[0]["missed_messages"], 39: tg_user[0]["friend_requests"], 40: 0})
+    if account_id == target_acc_id and is_account_owner:
+        response.update({38: tg_user[0]["missed_messages"], 39: tg_user[0]["friend_requests"], 40: 0})
 
     response.update({29: 1})
 
