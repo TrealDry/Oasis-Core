@@ -28,6 +28,9 @@ def upload_level():
 
     level_name = char_clear(get_arg("levelName"))
 
+    password = get_arg("password")
+    password = 1 if (password == "1") or (len(password) == 7) else 0
+
     if not limit_check(len(base64_decode(get_arg("levelDesc"))), 140) or \
        not limit_check(int_arg(get_arg("coins")), 3) or \
        not limit_check(int_arg(get_arg("levelLength")), 4) or \
@@ -35,7 +38,6 @@ def upload_level():
        not limit_check(int_arg(get_arg("unlisted")), 1) or \
        not limit_check(int_arg(get_arg("ldm")), 1) or \
        limit_check(int_arg(get_arg("objects")), minimum_number_blocks) or \
-       not limit_check(len(get_arg("password")), 6) or \
        not limit_check(len(get_arg("original")), 12) or \
        not limit_check(len(level_name), 20):
         return "-1"
@@ -60,7 +62,7 @@ def upload_level():
             "user_id": user_db.find_one({"account_id": account_id})["user_id"],
             "username": user_db.find_one({"account_id": account_id})["username"], "level_name": level_name,
             "level_desc": get_arg("levelDesc"), "level_version": 1,
-            "level_length": int_arg(get_arg("levelLength")), "level_password": int_arg(get_arg("password")),
+            "level_length": int_arg(get_arg("levelLength")), "level_password": password,
             "extra_string": char_clear(get_arg("extraString")),
             "official_song": int_arg(get_arg("audioTrack")), "non_official_song": song_id,
             "original_id": int_arg(get_arg("original")), "two_player": int_arg(get_arg("twoPlayer")),
@@ -110,7 +112,7 @@ def upload_level():
         level_db.update_one({"level_id": level_id}, {"$set": {
             "level_desc": get_arg("levelDesc"),
             "level_version": level_version + 1,
-            "level_password": int(get_arg("password")),
+            "level_password": password,
             "official_song": int_arg(get_arg("audioTrack")),
             "non_official_song": song_id,
             "two_player": int_arg(get_arg("twoPlayer")),
