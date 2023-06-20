@@ -52,15 +52,15 @@ def get_levels():
             query["two_player"] = 1
         if bool_str(get_arg("coins")):
             query["silver_coin"] = 1
-
         if bool_str(get_arg("star")):
             query["star"] = {"$gt": 0}
         if bool_str(get_arg("noStar")):
             query["star"] = {"$lt": 1}
-        if bool_str(get_arg("audioTrack")):
-            query["official_song"] = int_arg(get_arg("audioTrack"))
+
         if bool_str(get_arg("customSong")):
-            query["non_official_song"] = int_arg(get_arg("customSong"))
+            query["non_official_song"] = int_arg(get_arg("song"))
+        else:
+            query["official_song"] = int_arg(get_arg("song"))
 
         if uncompleted == 1 or only_completed == 1:
             completed_levels_arr = completed_levels[1:-1].split(",")
@@ -93,7 +93,7 @@ def get_levels():
                 query["level_length"] = int_arg(long)
             else:
                 long_arr = long.split(",")
-                for i in range(len(long_arr)):
+                for i in long_arr:
                     query["$or"].append({"level_length": int_arg(i)})
 
         if type_pack == "0":  # Поиск
