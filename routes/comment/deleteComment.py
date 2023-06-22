@@ -18,17 +18,21 @@ def delete_comment():
     if not check_password(account_id, password, ip=get_ip()):
         return "-1"
 
-    if level_db.count_documents({
-        "account_id": account_id,
-        "level_id": level_id
+    if levelcomment_db.count_documents({
+        "comment_id": comment_id, "level_id": level_id, "is_deleted": 0
     }) == 1:
-        pass
-    elif levelcomment_db.count_documents({
-        "account_id": account_id,
-        "comment_id": comment_id,
-        "level_id": level_id,
-        "is_deleted": 0
-    }) == 0:
+        if level_db.count_documents({
+            "account_id": account_id,
+            "level_id": level_id
+        }) == 1:
+            pass
+        elif levelcomment_db.count_documents({
+            "account_id": account_id,
+            "comment_id": comment_id,
+            "level_id": level_id
+        }) == 0:
+            return "-1"
+    else:
         return "-1"
 
     levelcomment_db.update_one({"comment_id": comment_id}, {"$set": {
