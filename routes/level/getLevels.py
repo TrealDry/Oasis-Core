@@ -57,10 +57,12 @@ def get_levels():
         if bool_str(get_arg("noStar")):
             query["star"] = {"$lt": 1}
 
+        song_id = int_arg(get_arg("song"))
+
         if bool_str(get_arg("customSong")):
-            query["non_official_song"] = int_arg(get_arg("song"))
-        else:
-            query["official_song"] = int_arg(get_arg("song"))
+            query["non_official_song"] = song_id
+        elif song_id >= 1:
+            query["official_song"] = song_id
 
         if uncompleted == 1 or only_completed == 1:
             completed_levels_arr = completed_levels[1:-1].split(",")
