@@ -20,19 +20,21 @@ def delete_level():
     if level_db.count_documents({
         "level_id": level_id,
         "delete_prohibition": 0,
-        "star": {"$lt": 1},
-        "deleted": 0
-    }):
+        "star": 0,
+        "deleted": 0,
+        "account_id": account_id
+    }) == 0:
+        return "-1"
 
-        with open(f"{Path.TO_ROOT}/data/level/{str(level_id)}.level", "w") as level_file:
-            level_file.write("")
+    with open(f"{Path.TO_ROOT}/data/level/{str(level_id)}.level", "w") as level_file:
+        level_file.write("")
 
-        level_db.update_one({"level_id": level_id}, {"$set": {
-            "deleted": 1
-        }})
+    level_db.update_one({"level_id": level_id}, {"$set": {
+        "deleted": 1
+    }})
 
-        levelcomment_db.update_many({"level_id": level_id}, {"$set": {
-            "is_deleted": 1
-        }})
+    levelcomment_db.update_many({"level_id": level_id}, {"$set": {
+        "is_deleted": 1
+    }})
 
     return "1"
