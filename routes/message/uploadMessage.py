@@ -22,7 +22,7 @@ def upload_message():
         return "-1"
 
     if not limit_check(len(base64_decode(subject)), 35) or \
-       not limit_check(len(base64_decode(body)), 200):
+       not limit_check(len(xor_cipher(base64_decode(body), "14251")), 200):
         return "-1"
 
     if account_id == recipient_id:
